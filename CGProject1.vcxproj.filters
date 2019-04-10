@@ -11,6 +11,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{4f1aef03-b79e-4ab3-9a60-8993cf14beb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project1\Scene">
+      <UniqueIdentifier>{e67af623-67f7-4380-9c54-2e05021543de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -26,6 +29,12 @@
       <Filter>Glory</Filter>
     </ClInclude>
     <ClInclude Include="GObject.h">
+      <Filter>Glory</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Project1\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GPolyhedron.h">
       <Filter>Glory</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Project1</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Project1\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
