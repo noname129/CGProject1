@@ -1,18 +1,23 @@
 #include "stdafx.h"
-#include "GObject.h"
-#include "GTransform.h"
+
+#ifndef __GSCENE_H__
+#define __GSCENE_H__
 
 namespace Glory {
+class GObject;
 
 class GScene {
+
 private:
-	std::vector<GObject> objects;
+	std::vector<GObject*> objects;
 
 public:
-  
-	void AddObject(GObject* object);
+	void AddObject(GObject* obj);
 
-	void Update(float deltaTime);
+	virtual void Update(float deltaTime);
+	virtual void Render();
 };
 
 }
+
+#endif

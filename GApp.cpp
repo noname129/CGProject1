@@ -1,7 +1,12 @@
 #include "stdafx.h"
 #include "GApp.h"
+#include "GScene.h"
 
 namespace Glory {
+
+GApp::GApp() {
+	lastFrameTime = glfwGetTime();
+}
 
 GApp& GApp::Instance() {
 	static GApp instance;
@@ -57,9 +62,16 @@ void GApp::MainLoop() {
 	}
 
 	while (!glfwWindowShouldClose(window)) {
+		if (!currentScene) {
+			continue;
+		}
+		float currentFrameTime = glfwGetTime();
+		currentScene->Update(currentFrameTime - lastFrameTime);
+		lastFrameTime = currentFrameTime;
+
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		//render();
+		currentScene->Render();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -68,7 +80,7 @@ void GApp::MainLoop() {
 }
 
 void GApp::SetScene(GScene* scene) {
-
+	currentScene = scene;
 }
 
 void GApp::DefaultFramebufferSizeCallback(GLFWwindow* window, int width, int height) {

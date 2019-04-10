@@ -1,9 +1,14 @@
 #include "stdafx.h"
-#include "GScene.h"
+
+#ifndef __GAPP_H__
+#define __GAPP_H__
 
 namespace Glory {
 
+class GScene;
+
 class GApp {
+
 private:
 	GLFWwindow *window;
 	GScene *currentScene;
@@ -11,7 +16,11 @@ private:
 
 	int windowWidth, windowHeight;
 
+	float lastFrameTime;
+
 public:
+	GApp();
+
 	std::string windowTitle;
 
 	static GApp& Instance();
@@ -30,3 +39,5 @@ public:
 };
 
 }
+
+#endif
