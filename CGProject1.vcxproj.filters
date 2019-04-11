@@ -37,15 +37,24 @@
     <ClInclude Include="GPolyhedron.h">
       <Filter>Glory</Filter>
     </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GDrawable.h">
+      <Filter>Glory</Filter>
+    </ClInclude>
+    <ClInclude Include="GCamera.h">
+      <Filter>Glory</Filter>
+    </ClInclude>
+    <ClInclude Include="GApp.h">
+      <Filter>Glory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Project1</Filter>
     </ClCompile>
     <ClCompile Include="GApp.cpp">
-      <Filter>Glory</Filter>
-    </ClCompile>
-    <ClCompile Include="GApp.h">
       <Filter>Glory</Filter>
     </ClCompile>
     <ClCompile Include="GScene.cpp">
@@ -60,5 +69,22 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Project1\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="GDrawable.cpp">
+      <Filter>Glory</Filter>
+    </ClCompile>
+    <ClCompile Include="GCamera.cpp">
+      <Filter>Glory</Filter>
+    </ClCompile>
+    <ClCompile Include="GPolyHedron.cpp">
+      <Filter>Glory</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="global.fs">
+      <Filter>Utils</Filter>
+    </None>
+    <None Include="global.vs">
+      <Filter>Utils</Filter>
+    </None>
   </ItemGroup>
 </Project>

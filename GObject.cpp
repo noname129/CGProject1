@@ -34,6 +34,14 @@ void GObject::SetParent(GObject* const obj) {
 	parent = obj;
 }
 
+glm::mat4 GObject::ModelMatrix() {
+	glm::mat4 result = glm::mat4();
+	for (GObject *ptr = this; ptr->parent != nullptr; ptr = ptr->parent) {
+		result = transform.Matrix() * result;
+	}
+	return result;
+}
+
 void GObject::Update(float deltaTime) {
 	for (auto iter = childs.begin(); iter != childs.end(); ++iter) {
 		if ((*iter)->isDeleted) {

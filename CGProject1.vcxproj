@@ -151,6 +151,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="GApp.h" />
+    <ClInclude Include="GCamera.h" />
+    <ClInclude Include="GDrawable.h" />
     <ClInclude Include="GObject.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
@@ -161,14 +164,17 @@
     <ClInclude Include="GTransform.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="shader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="GCamera.cpp" />
+    <ClCompile Include="GDrawable.cpp" />
+    <ClCompile Include="GPolyHedron.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GApp.cpp" />
-    <ClCompile Include="GApp.h" />
     <ClCompile Include="GObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -181,6 +187,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="global.fs" />
+    <None Include="global.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

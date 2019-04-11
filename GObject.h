@@ -9,7 +9,9 @@
 namespace Glory {
 
 class GObject {
-private:
+	friend void GScene::AddObject(GObject* obj);
+
+protected:
 	std::vector<GObject*> childs;
 	GScene *scene;
 	GObject *parent;
@@ -21,7 +23,9 @@ public:
 	bool isDeleted;
 
 	GObject();
-	~GObject();
+	virtual ~GObject();
+	GObject(const GObject& other) = delete;
+	GObject& operator=(const GObject& other) = delete;
 
 	void AddChild(GObject* const obj);
 
@@ -29,6 +33,9 @@ public:
 
 	inline GObject* Parent() const { return parent; }
 	void SetParent(GObject* const obj);
+
+	glm::mat4 ModelMatrix();
+	inline glm::vec3 WorldPos() { return ModelMatrix() * glm::vec4(transform.position, 1.0f); }
 
 	virtual void Update(float deltaTime);
 	virtual void Render();

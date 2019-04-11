@@ -10,7 +10,7 @@ class GScene;
 class GApp {
 
 private:
-	GLFWwindow *window;
+	GLFWwindow * window;
 	GScene *currentScene;
 	bool inited;
 

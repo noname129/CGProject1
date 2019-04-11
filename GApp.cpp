@@ -5,11 +5,11 @@
 namespace Glory {
 
 GApp::GApp() {
-	lastFrameTime = glfwGetTime();
+	lastFrameTime = static_cast<float>(glfwGetTime());
 }
 
 GApp& GApp::Instance() {
-	static GApp instance;
+	static GApp instance = GApp();
 	return instance;
 }
 
@@ -62,16 +62,17 @@ void GApp::MainLoop() {
 	}
 
 	while (!glfwWindowShouldClose(window)) {
-		if (!currentScene) {
-			continue;
+		float currentFrameTime = static_cast<float>(glfwGetTime());
+		if (currentScene) {
+			currentScene->Update(currentFrameTime - lastFrameTime);
 		}
-		float currentFrameTime = glfwGetTime();
-		currentScene->Update(currentFrameTime - lastFrameTime);
 		lastFrameTime = currentFrameTime;
 
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-		currentScene->Render();
+		if (currentScene) {
+			currentScene->Render();
+		}
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
