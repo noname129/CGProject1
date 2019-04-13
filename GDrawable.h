@@ -14,7 +14,10 @@ protected:
 	
 public:
 	GDrawable();
+	GDrawable(Shader* shader);
 	virtual ~GDrawable();
+
+	void SetShader(Shader* shader);
 
 	virtual void Update(float deltaTime);
 	virtual void Render();

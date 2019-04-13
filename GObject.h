@@ -35,7 +35,12 @@ public:
 	void SetParent(GObject* const obj);
 
 	glm::mat4 ModelMatrix();
-	inline glm::vec3 WorldPos() { return ModelMatrix() * glm::vec4(transform.position, 1.0f); }
+	inline glm::vec3 WorldPos() {
+		if (!parent) {
+			return transform.position;
+		}
+		return parent->ModelMatrix() * glm::vec4(transform.position, 1.0f); 
+	}
 
 	virtual void Update(float deltaTime);
 	virtual void Render();

@@ -75,8 +75,11 @@
     <ClCompile Include="GCamera.cpp">
       <Filter>Glory</Filter>
     </ClCompile>
-    <ClCompile Include="GPolyHedron.cpp">
+    <ClCompile Include="GPolyhedron.cpp">
       <Filter>Glory</Filter>
+    </ClCompile>
+    <ClCompile Include="testmain.cpp">
+      <Filter>Project1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +87,9 @@
       <Filter>Utils</Filter>
     </None>
     <None Include="global.vs">
+      <Filter>Utils</Filter>
+    </None>
+    <None Include="test.vs">
       <Filter>Utils</Filter>
     </None>
   </ItemGroup>

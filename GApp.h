@@ -21,6 +21,9 @@ private:
 public:
 	GApp();
 
+	GLFWwindow* Window() {
+		return window;
+	}
 	std::string windowTitle;
 
 	static GApp& Instance();

@@ -5,7 +5,7 @@
 namespace Glory {
 
 GObject::GObject() : isActive(true), isDeleted(false) {
-
+	transform.scale = glm::vec3(1.0f);
 }
 
 GObject::~GObject() {
@@ -17,6 +17,7 @@ GObject::~GObject() {
 void GObject::AddChild(GObject* const obj) {
 	childs.push_back(obj);
 	obj->parent = this;
+	obj->scene = this->scene;
 }
 
 void GObject::SetParent(GObject* const obj) {
@@ -35,9 +36,9 @@ void GObject::SetParent(GObject* const obj) {
 }
 
 glm::mat4 GObject::ModelMatrix() {
-	glm::mat4 result = glm::mat4();
-	for (GObject *ptr = this; ptr->parent != nullptr; ptr = ptr->parent) {
-		result = transform.Matrix() * result;
+	glm::mat4 result = glm::mat4(1.0f);
+	for (GObject *ptr = this; ptr != nullptr; ptr = ptr->parent) {
+		result = ptr->transform.Matrix() * result;
 	}
 	return result;
 }

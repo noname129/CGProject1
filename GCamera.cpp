@@ -43,7 +43,7 @@ glm::mat4 GCamera::ViewMatrix() {
 	glm::vec4 direction = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 	direction = ModelMatrix() * direction;
 	glm::vec3 pos = WorldPos();
-	view = glm::lookAt(pos, pos + glm::vec3(direction), glm::vec3(0.0f, 1.0f, 0.0f));
+	view = glm::lookAt(pos, glm::vec3(direction), glm::vec3(0.0f, 1.0f, 0.0f));
 	return view;
 }
 

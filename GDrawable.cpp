@@ -3,8 +3,12 @@
 
 namespace Glory {
 
-GDrawable::GDrawable() {
+GDrawable::GDrawable() : GDrawable(new Shader("global.vs", "global.fs")) {
 
+}
+
+GDrawable::GDrawable(Shader* shader) {
+	SetShader(shader);
 }
 
 GDrawable::~GDrawable() {
@@ -13,8 +17,12 @@ GDrawable::~GDrawable() {
 	}
 }
 
-void GDrawable::Update(float deltaTime) {
+void GDrawable::SetShader(Shader* shader) {
+	this->shader = shader;
+}
 
+void GDrawable::Update(float deltaTime) {
+	GObject::Update(deltaTime);
 }
 
 void GDrawable::Render() {

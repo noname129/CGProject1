@@ -37,7 +37,7 @@ void GApp::InitWindow(int width, int height, std::string title) {
 	//glfwSetKeyCallback(window, key_callback);
 
 	// OpenGL states
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
 
 	// Allow modern extension features
@@ -69,7 +69,8 @@ void GApp::MainLoop() {
 		lastFrameTime = currentFrameTime;
 
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		if (currentScene) {
 			currentScene->Render();
 		}
