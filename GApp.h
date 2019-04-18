@@ -31,6 +31,7 @@ public:
 	void InitWindow(int width, int height, std::string title = "");
 	void MainLoop();
 
+	GScene* Scene() const { return currentScene; }
 	void SetScene(GScene* scene);
 
 	int GetWindowWidth() { return windowWidth; }

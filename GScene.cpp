@@ -17,7 +17,7 @@ GScene::~GScene() {
 
 void GScene::AddObject(GObject* obj) {
 	objects.push_back(obj);
-	obj->scene = this;
+	obj->SetScene(this);
 }
 
 void GScene::Update(float deltaTime) {
@@ -28,7 +28,7 @@ void GScene::Update(float deltaTime) {
 			if (iter == objects.end()) {
 				break;
 			}
-		} else {
+		} else if ((*iter)->isActive) {
 			(*iter)->Update(deltaTime);
 		}
 	}
