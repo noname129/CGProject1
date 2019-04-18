@@ -20,6 +20,13 @@ void GObject::AddChild(GObject* const obj) {
 	obj->scene = this->scene;
 }
 
+void GObject::SetScene(GScene* const scene) {
+	this->scene = scene;
+	for (auto iter = childs.begin(); iter != childs.end(); ++iter) {
+		(*iter)->SetScene(scene);
+	}
+}
+
 void GObject::SetParent(GObject* const obj) {
 	if (parent) {
 		auto iter = std::find(parent->childs.begin(), parent->childs.end(), this);
@@ -51,7 +58,7 @@ void GObject::Update(float deltaTime) {
 			if (iter == childs.end()) {
 				break;
 			}
-		} else {
+		} else if ((*iter)->isActive) {
 			(*iter)->Update(deltaTime);
 		}
 	}
@@ -59,7 +66,9 @@ void GObject::Update(float deltaTime) {
 
 void GObject::Render() {
 	for (auto iter = childs.begin(); iter != childs.end(); ++iter) {
-		(*iter)->Render();
+		if ((*iter)->isActive) {
+			(*iter)->Render();
+		}
 	}
 }
 

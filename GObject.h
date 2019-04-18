@@ -9,8 +9,6 @@
 namespace Glory {
 
 class GObject {
-	friend void GScene::AddObject(GObject* obj);
-
 protected:
 	std::vector<GObject*> childs;
 	GScene *scene;
@@ -30,6 +28,8 @@ public:
 	void AddChild(GObject* const obj);
 
 	inline GScene& Scene() const { return *scene; }
+
+	void SetScene(GScene* const scene);
 
 	inline GObject* Parent() const { return parent; }
 	void SetParent(GObject* const obj);

@@ -3,7 +3,9 @@
 
 namespace Glory {
 
-GDrawable::GDrawable() : GDrawable(new Shader("global.vs", "global.fs")) {
+Shader GDrawable::defaultShader;
+
+GDrawable::GDrawable() : GDrawable(&defaultShader) {
 
 }
 

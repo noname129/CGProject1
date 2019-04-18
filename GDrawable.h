@@ -21,6 +21,8 @@ public:
 
 	virtual void Update(float deltaTime);
 	virtual void Render();
+
+	static Shader defaultShader;
 };
 
 }

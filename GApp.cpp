@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "GApp.h"
 #include "GScene.h"
+#include "GDrawable.h"
+#include "GMonoPoly.h"
 
 namespace Glory {
 
@@ -52,6 +54,11 @@ void GApp::InitWindow(int width, int height, std::string title) {
 	windowWidth = width;
 	windowHeight = height;
 	windowTitle = title;
+
+	// Default shader initialization
+	GDrawable::defaultShader.initShader("global.vs", "global.fs");
+	GMonoPoly::monotoneShader.initShader("monotone.vs", "monotone.fs");
+
 	inited = true;
 }
 

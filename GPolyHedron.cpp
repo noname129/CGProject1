@@ -10,9 +10,9 @@ GPolyhedron::GPolyhedron() {
 }
 
 GPolyhedron::~GPolyhedron() {
-//	glDeleteVertexArrays(1, &vao);
-//	glDeleteBuffers(1, &colorVbo);
-//	glDeleteBuffers(1, &vertexVbo);
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(1, &colorVbo);
+	glDeleteBuffers(1, &vertexVbo);
 }
 
 void GPolyhedron::Update(float deltaTime) {
