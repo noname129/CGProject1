@@ -56,6 +56,9 @@ void GMonoPoly::SetVao() {
 }
 
 void GMonoPoly::Render() {
+	if (!isActive) {
+		return;
+	}
 	GDrawable::Render();
 	shader->setVec4("color", color);
 

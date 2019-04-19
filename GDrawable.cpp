@@ -28,7 +28,7 @@ void GDrawable::Update(float deltaTime) {
 }
 
 void GDrawable::Render() {
-	if (!shader || !scene->mainCamera) {
+	if (!shader || !isActive || !scene->mainCamera) {
 		return;
 	}
 

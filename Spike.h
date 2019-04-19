@@ -9,8 +9,6 @@ using namespace Glory;
 
 class Spike : public GMonoPoly {
 public:
-	GObject *player;
-
 	Spike();
 
 	void Update(float deltaTime);

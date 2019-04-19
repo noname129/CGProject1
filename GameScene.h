@@ -11,6 +11,7 @@
 #include "Coin.h"
 
 #include <deque>
+#include <stack>
 #include <random>
 
 using namespace Glory;
@@ -32,9 +33,13 @@ public:
 	GPolyhedron *road[2];
 
 	Player *player;
-	std::deque<GObject*> enemies;
-	std::deque<GObject*> coins;
-		 
+	std::deque<GObject*> activeEnemies;
+	std::deque<GObject*> activeCoins;
+	std::stack<GObject*> enemyPool;
+	std::stack<GObject*> coinPool;
+		
+	float mouseX;
+
 	GameScene();
 
 	void GameReady();
@@ -44,7 +49,7 @@ public:
 	void Update(float deltaTime);
 	void Render();
 
-	void ActivateObject(std::deque<GObject*> queue);
+	void ActivateObject(std::stack<GObject*>& from, std::deque<GObject*>& out);
 
 	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);

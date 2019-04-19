@@ -9,13 +9,14 @@
 
 using namespace Glory;
 
-class Player : public GMonoPoly {
+class Player : public GObject {
 
 public:
 	float zSpeed;
 	float jumpSpeed;
 	bool onGround;
 
+	GMonoPoly *cube;
 	GMonoPoly *wheel[2];
 	GCamera *camera;
 

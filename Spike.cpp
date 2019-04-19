@@ -5,10 +5,10 @@
 Spike::Spike() {
 	AddVertices(
 		{
-			{-0.5f, -0.5f, -0.5f},
-			{0.5f, 0.5f, -0.5f},
-			{0.5f, -0.5f, 0.5f},
-			{-0.5f, 0.5f, 0.5f}
+			{-0.75f, -0.75f, -0.75f},
+			{0.75f, 0.75f, -0.75f},
+			{0.75f, -0.75f, 0.75f},
+			{-0.75f, 0.75f, 0.75f}
 		}
 	);
 	AddIndices(
@@ -26,11 +26,11 @@ void Spike::Update(float deltaTime) {
 	GObject::Update(deltaTime);
 
 	transform.rotation.y += 120.0f * deltaTime;
-	transform.rotation.x += 60.0f * deltaTime;
+  	transform.rotation.x += 60.0f * deltaTime;
 
-	float distance = glm::distance(player->transform.position, transform.position);
 	GameScene *gameScene = (GameScene *)scene;
-	if (gameScene->state == PLAYING && distance <= 0.5f + 0.204) {
+	float distance = glm::distance(gameScene->player->transform.position, transform.position);
+	if (gameScene->state == PLAYING && distance <= 1.0f * gameScene->player->cube->transform.scale.x + 0.306f) {
 		gameScene->GameOver();
 	}
 }
