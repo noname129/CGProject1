@@ -17,6 +17,7 @@ public:
 	GDrawable(Shader* shader);
 	virtual ~GDrawable();
 
+	Shader* GetShader() { return shader; }
 	void SetShader(Shader* shader);
 
 	virtual void Update(float deltaTime);

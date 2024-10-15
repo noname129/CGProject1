@@ -17,7 +17,7 @@ GObject::~GObject() {
 void GObject::AddChild(GObject* const obj) {
 	childs.push_back(obj);
 	obj->parent = this;
-	obj->scene = this->scene;
+	obj->SetScene(this->scene);
 }
 
 void GObject::SetScene(GScene* const scene) {

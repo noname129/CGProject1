@@ -11,7 +11,7 @@ class GApp {
 
 private:
 	GLFWwindow * window;
-	GScene *currentScene;
+	GScene *currentScene, *lastScene;
 	bool inited;
 
 	int windowWidth, windowHeight;
@@ -26,7 +26,7 @@ public:
 	}
 	std::string windowTitle;
 
-	static GApp& Instance();
+	static GApp* Instance();
 
 	void InitWindow(int width, int height, std::string title = "");
 	void MainLoop();

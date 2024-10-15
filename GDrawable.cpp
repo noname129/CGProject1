@@ -14,9 +14,7 @@ GDrawable::GDrawable(Shader* shader) {
 }
 
 GDrawable::~GDrawable() {
-	if (shader) {
-		delete shader;
-	}
+
 }
 
 void GDrawable::SetShader(Shader* shader) {
@@ -33,6 +31,7 @@ void GDrawable::Render() {
 	}
 
 	shader->use();
+	scene->CalculateLights(*shader);
 	shader->setMat4("projection", scene->ProjectionMatrix());
 	shader->setMat4("view", scene->ViewMatrix());
 	shader->setMat4("model", ModelMatrix());

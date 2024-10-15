@@ -3,16 +3,20 @@
 #include "GScene.h"
 #include "GDrawable.h"
 #include "GMonoPoly.h"
+#include "GCanvas.h"
+
+#include "Explosion.h"
 
 namespace Glory {
 
 GApp::GApp() {
 	lastFrameTime = static_cast<float>(glfwGetTime());
+	lastScene = nullptr;
 }
 
-GApp& GApp::Instance() {
+GApp* GApp::Instance() {
 	static GApp instance = GApp();
-	return instance;
+	return &instance;
 }
 
 void GApp::InitWindow(int width, int height, std::string title) {
@@ -41,6 +45,10 @@ void GApp::InitWindow(int width, int height, std::string title) {
 	// OpenGL states
 	//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_BLEND);
+	glDepthFunc(GL_LEQUAL);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Allow modern extension features
 	glewExperimental = GL_TRUE;
@@ -56,8 +64,9 @@ void GApp::InitWindow(int width, int height, std::string title) {
 	windowTitle = title;
 
 	// Default shader initialization
-	GDrawable::defaultShader.initShader("global.vs", "global.fs");
-	GMonoPoly::monotoneShader.initShader("monotone.vs", "monotone.fs");
+	GDrawable::defaultShader.initShader("Resources/shaders/global.vs", "Resources/shaders/global.fs");
+	GMonoPoly::monotoneShader.initShader("Resources/shaders/monotone.vs", "Resources/shaders/monotone.fs");
+	GCanvas::defaultShader.initShader("Resources/shaders/ui.vs", "Resources/shaders/ui.fs");
 
 	inited = true;
 }
@@ -75,12 +84,18 @@ void GApp::MainLoop() {
 		}
 		lastFrameTime = currentFrameTime;
 
-		glClearColor(0.6f, 0.9f, 0.94f, 1.0f);
+		glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		if (currentScene) {
 			currentScene->Render();
 		}
+
+		if (lastScene) {
+			delete lastScene;
+			lastScene = nullptr;
+		}
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -89,6 +104,7 @@ void GApp::MainLoop() {
 }
 
 void GApp::SetScene(GScene* scene) {
+	lastScene = currentScene;
 	currentScene = scene;
 }
 
@@ -96,8 +112,8 @@ void GApp::DefaultFramebufferSizeCallback(GLFWwindow* window, int width, int hei
 	// make sure the viewport matches the new window dimensions; note that width and
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
-	GApp::Instance().windowWidth = width;
-	GApp::Instance().windowHeight = height;
+	GApp::Instance()->windowWidth = width;
+	GApp::Instance()->windowHeight = height;
 }
 
 void GApp::SetFrameBufferSizeCallback(GLFWframebuffersizefun callback) {

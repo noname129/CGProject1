@@ -5,53 +5,49 @@
 
 #include "GScene.h"
 #include "GCamera.h"
-#include "GMonoPoly.h"
-
-#include "Player.h"
-#include "Coin.h"
+#include "GTexturedMesh.h"
 
 #include <deque>
 #include <stack>
 #include <random>
+#include "GModel.h"
+#include "text.h"
+#include "GCanvas.h"
+
+#include "Player.h"
 
 using namespace Glory;
 
-enum GameState {
-	READY,
-	PLAYING,
-	DEAD
-};
-
 class GameScene : public GScene {
 public:
-	GameState state;
-	float score;
-	float coinCount;
-	float enemyTimer, coinTimer;
+	GCanvas canvas;
+	Text *text;
 
-	GCamera *camera;
-	GPolyhedron *road[2];
+	GTexturedMesh * background;
+
+	GCamera * camera;
+	GDirectionalLight * dl;
 
 	Player *player;
-	std::deque<GObject*> activeEnemies;
-	std::deque<GObject*> activeCoins;
-	std::stack<GObject*> enemyPool;
-	std::stack<GObject*> coinPool;
-		
-	float mouseX;
+
+	GObject *enemies;
+	GObject *projectiles;
+	GObject *explosions;
+
+	float enemyCooldown;
+	int score;
+	bool restart;
+	float restartTime;
 
 	GameScene();
-
-	void GameReady();
-	void GameStart();
-	void GameOver();
 
 	void Update(float deltaTime);
 	void Render();
 
-	void ActivateObject(std::stack<GObject*>& from, std::deque<GObject*>& out);
+	void LoadResources();
 
 	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	static void MouseButtonCallback(GLFWwindow* window, int button, int action, int mode);
 	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
 };
 

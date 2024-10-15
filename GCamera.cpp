@@ -29,8 +29,8 @@ GCamera::Option GCamera::GetCameraOption() const {
 
 void GCamera::SetCameraOption(Option option) {
 	this->option = option;
-	float screenWidth = static_cast<float>(GApp::Instance().GetWindowWidth());
-	float screenHeight = static_cast<float>(GApp::Instance().GetWindowHeight());
+	float screenWidth = static_cast<float>(GApp::Instance()->GetWindowWidth());
+	float screenHeight = static_cast<float>(GApp::Instance()->GetWindowHeight());
 	if (option.orthogonal) {
 		projection = glm::ortho(0.0f, screenWidth, 0.0f, screenHeight, option.nearPlaneDistance, option.farPlaneDistance);
 	} else {

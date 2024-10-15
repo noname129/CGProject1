@@ -1,32 +1,41 @@
+#pragma once
+
 #include "stdafx.h"
-
-#ifndef __PLAYER_H__
-#define	__PLAYER_H__
-
-#include "GPolyhedron.h"
-#include "GMonoPoly.h"
+#include "GObject.h"
+#include "GModel.h"
 #include "GCamera.h"
+#include "keyframe.h"
 
 using namespace Glory;
 
 class Player : public GObject {
-
 public:
-	float zSpeed;
-	float jumpSpeed;
-	bool onGround;
+	enum State {
+		MOVING,
+		RUSHING,
+		DEAD
+	};
 
-	GMonoPoly *cube;
-	GMonoPoly *wheel[2];
-	GCamera *camera;
+	static constexpr float rushMaxCool = 3.0f;
+
+	GObject * modelObject;
+	GModel * model;
+	GCamera * camera;
+
+	KeyFraming rushRotX;
+
+	State state;
+	glm::vec2 moveVec;
+
+	glm::vec2 rushVec;
+	float currentAnimTime;
+	float rushCooldown;
 
 	Player();
 
-	void Jump();
+	void BeginRush(glm::vec2 destDir);
 
 	void Update(float deltaTime);
-
 	void Render();
-};
 
-#endif
+};
